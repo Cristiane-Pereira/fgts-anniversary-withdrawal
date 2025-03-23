@@ -1,4 +1,4 @@
-export default function Home() {
+export default function PageInitial() {
   return (
     <div>
       <h1 className="title-primary">Oie</h1>
