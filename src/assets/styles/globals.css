@@ -30,22 +30,22 @@ body {
   --tw-text-opacity: 1;
   color: var(--color-primary);
   font-weight: 800;
-  font-size: 2.08rem;
+  font-size: 1.6rem;
 }
 
 /* Section Title */
 .title-secondary {
   color: var(--color-black);
-  font-weight: 800;
-  font-size: 2rem;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 /* Subtitle */
 .subtitle {
   --tw-text-opacity: 1;
   color: var(--color-black);
-  font-weight: 700;
-  font-size: 0.93rem;
+  font-weight: 800;
+  font-size: 1.3rem;
 }
 
 /* ==========================
@@ -56,7 +56,7 @@ span {
   color: var(--color-text-light);
   font-weight: 200;
   font-size: 1rem;
-  line-height: 1.75rem;
+  line-height: 1.55rem;
 }
 
 /* ==========================
@@ -64,18 +64,12 @@ span {
 ========================== */
 .btn-primary {
   --tw-bg-opacity: 1;
-  background-color: var(--color-secondary);
-  border-radius: 0.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  background-color: var(--color-secondary) !important;
   transition: background-color 0.2s ease;
 }
 
 .btn-primary:hover {
-  background-color: rgba(34, 153, 85, 1);
+  background-color: #339966 !important;
 }

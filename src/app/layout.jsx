@@ -1,5 +1,11 @@
 import { Montserrat } from "next/font/google";
+
+// Import Context
+import { AppWrapper } from "./contexts";
+
+// Imports Styles
 import "../assets/styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -16,7 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body className={`${montserrat.variable}`}>
-        {children}
+        <AppWrapper>
+           {children}
+        </AppWrapper>
       </body>
     </html>
   );
