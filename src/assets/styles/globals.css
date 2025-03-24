@@ -2,11 +2,9 @@
    🎨 Color Variables
 ========================== */
 :root {
-  --color-primary: rgba(51, 102, 255, 1);
-  --color-secondary: rgba(51, 187, 102, 1);
+  --color-primary: #FFFFFF;
   --color-black: rgba(0, 0, 0, 1);
   --color-text-light: rgba(0, 0, 0, 0.8);
-  --color-text-white: #fff;
   --bg-blue: #003366;
 
   /* Feedback Colors */
@@ -39,8 +37,8 @@ body {
 ========================== */
 .title-primary {
   color: var(--color-primary);
-  font-weight: 800;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.8rem;
 }
 
 .title-secondary {
@@ -107,6 +105,13 @@ span {
   color: var(--color-danger);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+/* Text Logo */ 
+.text-logo {
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 300;
 }
 
 /* ==========================
