@@ -5,7 +5,7 @@ import { createContext, useState, useContext } from "react";
 const initialValues = {
     name: "",
     phone: "",
-    birth_date: "",
+    birth_month: "",
     withdrawal_amount: 0
 }
 

@@ -6,6 +6,12 @@
   --color-secondary: rgba(51, 187, 102, 1);
   --color-black: rgba(0, 0, 0, 1);
   --color-text-light: rgba(0, 0, 0, 0.8);
+  --color-text-white: #fff;
+  --bg-blue: #003366;
+
+  /* Feedback Colors */
+  --color-danger: rgba(220, 53, 69, 1);
+  --color-danger-bg: rgba(220, 53, 69, 0.1);
 }
 
 /* ==========================
@@ -21,41 +27,35 @@ body {
   font-family: "Montserrat", sans-serif !important;
 }
 
-.container {
-  min-height: 100vh !important;
-  max-width: 100%;
+/* ==========================
+   📦 Layout
+========================== */
+.section-container {
+  background: var(--bg-blue);
 }
 
 /* ==========================
    📝 Typography
 ========================== */
-
-/* Title Variable */
 .title-primary {
-  --tw-text-opacity: 1;
   color: var(--color-primary);
   font-weight: 800;
   font-size: 1.6rem;
 }
 
-/* Section Title */
 .title-secondary {
   color: var(--color-black);
   font-weight: 500;
   font-size: 1.2rem;
 }
 
-/* Subtitle */
 .subtitle {
-  --tw-text-opacity: 1;
   color: var(--color-black);
   font-weight: 800;
   font-size: 1.3rem;
 }
 
-/* ==========================
-   📌 Text Elements
-========================== */
+/* Paragraph */
 p {
   color: var(--color-text-light);
   font-weight: 200;
@@ -63,23 +63,57 @@ p {
   line-height: 1.55rem;
 }
 
+/* Span */
 span {
   color: var(--color-text-light);
   font-weight: 300;
   font-size: 0.8rem;
 }
 
+/* Labels */
+.input-label {
+  color: var(--color-text-light);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Error Messages */
+.text-error {
+  color: var(--color-danger);
+  font-weight: 500 !important;
+}
+
+.icon-error {
+  font-size: 18px;
+}
+
+/* ==========================
+   📌 Elements
+========================== */
+/* Input Text */
+.input-text {
+  font-size: 0.9rem;
+}
+
+/* Placeholder */
+::placeholder {
+  font-weight: 400;
+  color: gray !important;
+}
+
+/* Badge */
+.badge-soft-danger {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
 /* ==========================
    🔘 Buttons
 ========================== */
-.btn-primary {
-  --tw-bg-opacity: 1;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  background-color: var(--color-secondary) !important;
-  transition: background-color 0.2s ease;
-}
-
-.btn-primary:hover {
-  background-color: #339966 !important;
+.button-submit {
+  color: var(--color-text-white) !important;
+  font-size: 0.8rem;
+  font-weight: 600 !important;
 }

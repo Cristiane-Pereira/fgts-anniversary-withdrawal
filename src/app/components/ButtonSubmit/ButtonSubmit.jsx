@@ -9,14 +9,15 @@ const ButtonSubmit = ({
 }) => {
   return (
     <Button
+      variant="warning"
       type="submit"
-      className="rounded-2 text-uppercase border-0 px-3 py-2"
+      className="button-submit rounded-2 text-uppercase border-0 px-5 py-3"
       disabled={isLoading || disabled}
       {...props}
     >
       {isLoading ? (
         <>
-          <span className="ms-2">Carregando...</span>
+          <span className="button-submit ms-2">Carregando...</span>
         </>
       ) : (
         label

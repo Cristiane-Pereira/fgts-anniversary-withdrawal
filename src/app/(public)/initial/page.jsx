@@ -1,7 +1,11 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
+
 import { Formik } from "formik";
 import * as yup from "yup";
 
@@ -12,50 +16,54 @@ import ButtonSubmit from "@/app/components/ButtonSubmit/ButtonSubmit";
 // Import Context
 import { useAppContext } from "@/app/contexts";
 
+// Import Utils
+import { validatePhoneNumber } from "@/app/helpers/utils";
+
 export default function PageInitial() {
   const [isLoading, setIsLoading] = useState(false);
   const [enableButton, setEnableButton] = useState(false); // Inicia o botão desabilitado
-  const { formData, updateFormData } = useAppContext(); // Pega os dados do context iniciais
+  const { formData, updateFormData } = useAppContext();
 
   const schema = yup.object().shape({
     name: yup
       .string()
-      .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/, "Insira seu nome e sobrenome")
-      .required("Nome completo obrigatório"),
+      .required("Nome obrigatório"),
+    // phone: yup
+    // .string()
+    // .transform((value) => (!value || /^\+\d{1,3}$/.test(value.trim()) ? null : value))
+    // .test("valid-phone", "Telefone inválido", async (value) => {
+    //   if (!value) return true;
+    //   const numericValue = value.replace(/\s/g, "");
+    //   const valid = await validatePhoneNumber(numericValue); // Valida o telefone com a API
+    //   if (valid === true) return true;
+    //   return valid; // Retorna erro caso a validação falhe
+    // })
+    // .required("Telefone obrigatório"),
     phone: yup
       .string()
-      .transform((value) => (!value || /^\+\d{1,3}$/.test(value.trim()) ? null : value))
+      .required("Telefone obrigatório")
       .test("valid-phone", "Telefone inválido", (value) => {
-        if (!value) return true;
-        const numericValue = value.replace(/\s/g, "");
-        return /^\+\d{1,2}\d{12}$/.test(numericValue);
-      })
-      .required("Telefone obrigatório"),
-    birth_date: yup.string().required("Data de nascimento obrigatória"),
-    withdrawal_amount: yup.number().required("Valor do FGTS para consulta do saque obrigatório"),
+        if (!value) return true; // Se estiver vazio, o required já cuida disso
+        const numericValue = value.replace(/\D/g, ""); // Remove tudo que não for número
+        return /^55\d{11}$|^\d{11}$/.test(numericValue);
+      }),  
+    withdrawal_amount: yup.number().required("Valor do saldo obrigatório"),
+    birth_month: yup.string().required("Mês de aniversário obrigatório"),
   });
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
     setEnableButton(false);
 
-    updateFormData(values); // Atualizando os dados no context
-    // console.log("Dados do Form:", values);
+    updateFormData(values);
   };
 
   useEffect(() => {
-    setEnableButton(false); // Força o botão a estar desabilitado toda vez que o componente for montado pela primeira vez
+    setEnableButton(false); // Desativa o btn toda vez que o component for montado
   }, []);
 
   return (
     <Card>
-      <h1 className="title-primary">Consulta do Saque-Aniversário do FGTS</h1>
-
-      <h2 className="title-secondary">
-        Este sistema tem como objetivo calcular o valor do saque-aniversário do Fundo de Garantia do Tempo de Serviço
-        (FGTS) com base nas informações fornecidas abaixo:
-      </h2>
-
       <Formik
         initialValues={formData}
         validationSchema={schema}
@@ -70,97 +78,122 @@ export default function PageInitial() {
           return (
             <Form onSubmit={handleSubmit}>
               <Row>
-                <h3 className="subtitle mt-4 mb-2">Dados Pessoais</h3>
-
                 {/* Campo Nome */}
-                <Form.Group as={Col} lg="7" className="mb-2">
+                <Form.Group as={Col} lg="6" className="mb-3">
+                  <Form.Label htmlFor="name" className="input-label mb-1">Qual seu nome?</Form.Label>
+
                   <Form.Control
                     type="text"
                     name="name"
-                    placeholder="Insira seu nome completo"
-                    className="rounded-2"
+                    placeholder="ex: Guilherme Neves"
+                    className="input-text rounded-2"
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <div className="d-flex justify-content-between align-items-center m-2">
-                    {!touched.name ? (
-                      <span className="description-exemple">Nome completo</span>
-                    ) : (
-                      <span className="text-danger">{errors?.name}</span>
-                    )}
-                  </div>
+                  {touched.name && errors?.name  && (
+                    <div className="d-flex align-items-center mt-2">
+                      <span className="badge badge-soft-danger text-error text-danger d-flex align-items-center py-2 px-3">
+                        <FontAwesomeIcon icon={faCircleXmark} className="icon-error me-1"/>
+                        {errors?.name}
+                      </span>
+                    </div>
+                  )}
                 </Form.Group>
 
                 {/* Campo Telefone */}
-                <Form.Group as={Col} lg="5" className="mb-2">
+                <Form.Group as={Col} lg="6" className="mb-3">
+                  <Form.Label htmlFor="phone" className="input-label mb-1">Qual seu telefone?</Form.Label>
+
                   <Form.Control
                     type="text"
                     name="phone"
-                    placeholder="+55(00) 00000-0000"
-                    className="rounded-2"
+                    placeholder="ex: (21) 98765-9087"
+                    className="input-text rounded-2"
                     value={values.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <div className="d-flex justify-content-between align-items-center m-2">
-                    {!touched.phone ? (
-                      <span className="description-exemple">Telefone</span>
-                    ) : (
-                      <span className="text-danger">{errors?.phone}</span>
-                    )}
-                  </div>
+                  {touched.phone && errors?.phone  && (
+                    <div className="d-flex align-items-center mt-2">
+                      <span className="badge badge-soft-danger text-error text-danger d-flex align-items-center py-2 px-3">
+                        <FontAwesomeIcon icon={faCircleXmark} className="icon-error me-1"/>
+                        {errors?.phone}
+                      </span>
+                    </div>
+                  )}
                 </Form.Group>
               </Row>
 
               <Row>
-                {/* Campo Data de Nascimento */}
-                <Form.Group as={Col} lg="3" className="mb-2">
-                  <Form.Control
-                    type="date"
-                    name="birth_date"
-                    className="rounded-2"
-                    value={values.birth_date}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <div className="d-flex justify-content-between align-items-center m-2">
-                    {!touched.birth_date ? (
-                      <span className="description-exemple">Data de Nascimento</span>
-                    ) : (
-                      <span className="text-danger">{errors?.birth_date}</span>
-                    )}
-                  </div>
-                </Form.Group>
+                {/* Campo Saldo */}
+                <Form.Group as={Col} lg="6" className="mb-2">
+                  <Form.Label htmlFor="withdrawal_amount" className="input-label mb-1">Qual seu saldo?</Form.Label>
 
-                {/* Campo Valor de Saque */}
-                <Form.Group as={Col} lg="3" className="mb-2">
                   <Form.Control
                     type="number"
                     name="withdrawal_amount"
-                    placeholder="1000"
-                    className="rounded-2"
+                    placeholder="ex: R$ 5.000,00"
+                    className="input-text rounded-2"
                     value={values.withdrawal_amount}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <div className="d-flex justify-content-between align-items-center m-2">
-                    {!touched.withdrawal_amount ? (
-                      <span className="description-exemple">Valor do FGTS para consulta do saque</span>
-                    ) : (
-                      <span className="text-danger">{errors?.withdrawal_amount}</span>
-                    )}
-                  </div>
+                  {touched.withdrawal_amount && errors?.withdrawal_amount  && (
+                    <div className="d-flex align-items-center mt-2">
+                      <span className="badge badge-soft-danger text-error text-danger d-flex align-items-center py-2 px-3">
+                        <FontAwesomeIcon icon={faCircleXmark} className="icon-error me-1"/>
+                        {errors?.withdrawal_amount}
+                      </span>
+                    </div>
+                  )}
+                </Form.Group>
+
+                {/* Campo Mês de Nascimento */} 
+                <Form.Group as={Col} lg="6" className="mb-2">
+                  <Form.Label htmlFor="birth_month" className="input-label mb-1">Qual seu mês de aniversário?</Form.Label>
+
+                  <Form.Select
+                    name="birth_month"
+                    value={values.birth_month}
+                    className="input-text rounded-2"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  >
+                    <option value="">Selecione...</option>
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                  </Form.Select>
+                  {touched.birth_month && errors?.birth_month  && (
+                    <div className="d-flex align-items-center mt-2">
+                      <span className="badge badge-soft-danger text-error text-danger d-flex align-items-center py-2 px-3">
+                        <FontAwesomeIcon icon={faCircleXmark} className="icon-error me-1"/>
+                        {errors?.birth_month}
+                      </span>
+                    </div>
+                  )}
                 </Form.Group>
               </Row>
 
               {/* Botão de Consulta */}
-              <ButtonSubmit
-                label="Consultar FGTS"
-                isLoading={isLoading}
-                disabled={!enableButton || isLoading}
-                onClick={handleSubmit}
-              />
+              <div className="d-flex justify-content-center mt-3">
+                <ButtonSubmit
+                  label="Ver Proposta"
+                  isLoading={isLoading}
+                  disabled={!enableButton || isLoading}
+                  onClick={handleSubmit}
+                />
+              </div>
             </Form>
           );
         }}
@@ -168,4 +201,3 @@ export default function PageInitial() {
     </Card>
   );
 }
-
