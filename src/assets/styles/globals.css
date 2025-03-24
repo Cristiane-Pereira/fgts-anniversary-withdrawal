@@ -21,6 +21,11 @@ body {
   font-family: "Montserrat", sans-serif !important;
 }
 
+.container {
+  min-height: 100vh !important;
+  max-width: 100%;
+}
+
 /* ==========================
    📝 Typography
 ========================== */
@@ -51,12 +56,17 @@ body {
 /* ==========================
    📌 Text Elements
 ========================== */
-p,
-span {
+p {
   color: var(--color-text-light);
   font-weight: 200;
   font-size: 1rem;
   line-height: 1.55rem;
+}
+
+span {
+  color: var(--color-text-light);
+  font-weight: 300;
+  font-size: 0.8rem;
 }
 
 /* ==========================
