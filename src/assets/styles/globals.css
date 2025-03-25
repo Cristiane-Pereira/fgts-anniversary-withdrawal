@@ -2,7 +2,9 @@
    🎨 Color Variables
 ========================== */
 :root {
+  /* Core Colors */
   --color-primary: #FFFFFF;
+  --color-secondary: #17A2B8;
   --color-black: rgba(0, 0, 0, 1);
   --color-text-light: rgba(0, 0, 0, 0.8);
   --bg-blue: #003366;
@@ -17,8 +19,8 @@
 ========================== */
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -35,37 +37,55 @@ body {
 /* ==========================
    📝 Typography
 ========================== */
-.title-primary {
-  color: var(--color-primary);
+h1 {
   font-weight: 600;
   font-size: 1.8rem;
 }
 
-.title-secondary {
-  color: var(--color-black);
-  font-weight: 500;
-  font-size: 1.2rem;
+h3 {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
+/* Titles */
+.title-primary {
+  color: var(--color-primary);
+}
+
+.title-secondary {
+  color: var(--color-secondary);
+}
+
+/* Subtitles */
 .subtitle {
   color: var(--color-black);
-  font-weight: 800;
-  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 /* Paragraph */
 p {
-  color: var(--color-text-light);
-  font-weight: 200;
+  color: var(--color-primary);
+  font-weight: 400;
   font-size: 1rem;
-  line-height: 1.55rem;
 }
 
 /* Span */
 span {
-  color: var(--color-text-light);
-  font-weight: 300;
+  color: var(--color-primary);
+  font-weight: 200;
   font-size: 0.8rem;
+}
+
+/* Strong */
+strong {
+  font-weight: 700;
+}
+
+/* Small */
+small {
+  color: var(--color-black);
+  font-weight: 500;
+  font-size: 0.7rem;
 }
 
 /* Labels */
@@ -81,6 +101,13 @@ span {
   font-weight: 500 !important;
 }
 
+/* Value Display */
+.value-sake {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+/* Icons */
 .icon-error {
   font-size: 18px;
 }
@@ -107,7 +134,7 @@ span {
   border-radius: 0.25rem;
 }
 
-/* Text Logo */ 
+/* Text Logo */
 .text-logo {
   color: var(--color-primary);
   font-size: 0.7rem;
@@ -118,7 +145,7 @@ span {
    🔘 Buttons
 ========================== */
 .button-submit {
-  color: var(--color-text-white) !important;
+  color: var(--color-primary) !important;
   font-size: 0.8rem;
   font-weight: 600 !important;
 }

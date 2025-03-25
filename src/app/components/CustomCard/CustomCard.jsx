@@ -5,8 +5,8 @@ const CustomCard = ({
   children,
 }) => {
   return (
-    <Card className="w-50 h-auto bg-link-light rounded-4 py-2 px-lg-4" style={{minWidth: '300px'}}>
-      <CardBody className="mt-0 mx-lg-2">
+    <Card className="w-50 rounded-4 px-lg-4" style={{minWidth: '300px'}}>
+      <CardBody>
         {children}
       </CardBody>
   </Card>

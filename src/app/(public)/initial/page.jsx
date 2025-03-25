@@ -5,11 +5,12 @@ import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
-
+import { useRouter } from "next/navigation";
 import { Formik } from "formik";
 import * as yup from "yup";
 
 // Imports Components
+import Container from "@/app/components/Container/Container";
 import Card from "@/app/components/CustomCard/CustomCard";
 import ButtonSubmit from "@/app/components/ButtonSubmit/ButtonSubmit";
 
@@ -18,12 +19,12 @@ import { useAppContext } from "@/app/contexts";
 
 // Import Utils
 import { validatePhoneNumber } from "@/app/helpers/utils";
-import Container from "@/app/components/Container/Container";
 
 export default function PageInitial() {
   const [isLoading, setIsLoading] = useState(false);
   const [enableButton, setEnableButton] = useState(false); // Inicia o botão desabilitado
   const { formData, updateFormData } = useAppContext();
+  const router = useRouter();
 
   const schema = yup.object().shape({
     name: yup
@@ -57,6 +58,7 @@ export default function PageInitial() {
     setEnableButton(false);
 
     updateFormData(values);
+    router.push("/result");
   };
 
   useEffect(() => {
