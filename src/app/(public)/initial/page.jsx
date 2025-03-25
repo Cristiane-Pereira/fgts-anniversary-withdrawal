@@ -49,7 +49,15 @@ export default function PageInitial() {
         const numericValue = value.replace(/\D/g, ""); // Remove tudo que não for número
         return /^55\d{11}$|^\d{11}$/.test(numericValue);
       }),  
-    withdrawal_amount: yup.number().required("Valor do saldo obrigatório"),
+    withdrawal_amount: yup
+      .string()
+      .required("Valor do saldo obrigatório")
+      .matches(
+        /^(?!-)(?:\d{1,3}(?:[\.,]\d{3})*|\d+)(?:[\.,]\d+)?$/, 
+        "Não pode ser valor negativo"
+      )
+      .test('positive-number', 'O valor não pode ser negativo', value => parseFloat(value) >= 0),
+  
     birth_month: yup.string().required("Mês de aniversário obrigatório"),
   });
 
@@ -131,7 +139,7 @@ export default function PageInitial() {
 
                 <Row>
                   {/* Campo Saldo */}
-                  <Form.Group as={Col} lg="6" className="mb-2">
+                  <Form.Group as={Col} lg="5" className="mb-2">
                     <Form.Label htmlFor="withdrawal_amount" className="input-label mb-1">Qual seu saldo?</Form.Label>
 
                     <Form.Control
@@ -154,7 +162,7 @@ export default function PageInitial() {
                   </Form.Group>
 
                   {/* Campo Mês de Nascimento */} 
-                  <Form.Group as={Col} lg="6" className="mb-2">
+                  <Form.Group as={Col} lg="7" className="mb-2">
                     <Form.Label htmlFor="birth_month" className="input-label mb-1">Qual seu mês de aniversário?</Form.Label>
 
                     <Form.Select
