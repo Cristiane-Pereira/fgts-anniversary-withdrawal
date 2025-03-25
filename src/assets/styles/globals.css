@@ -141,6 +141,12 @@ small {
   font-weight: 300;
 }
 
+button[data-nextjs-dev-tools-button="true"] {
+  display: none !important;
+}
+
+
+
 /* ==========================
    🔘 Buttons
 ========================== */
