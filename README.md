@@ -30,10 +30,13 @@ O valor do saque-aniversário é calculado conforme a faixa de saldo do FGTS do 
 - JavaScript;
 
 
-## **Tecnologias Utilizadas para o Testes Unitários e de Integridade**
+## **Tecnologias Utilizadas para Desenvolver os Testes Unitários**
 
 - Jest;
 - Testing Library;
+
+**Obs:** (Para rodar os testes localmente, basta abrir o terminal na raiz do projeto e executar o comando: <code>npm test</code>);
+
 
 
 ## **Requisitos Funcionais**
@@ -42,7 +45,7 @@ O valor do saque-aniversário é calculado conforme a faixa de saldo do FGTS do 
 - Página de Resultado com cálculo do saque-aniversário que o usuário vai poder sacar;
 - Foi implementada uma validação nos campos do formulário, com destaque para o campo de telefone, utilizando a [Phone Number Validation and Verification API](https://www.abstractapi.com/api/phone-validation-api) para garantir que o número informado seja válido. Além disso, os campos de nome, saldo do FGTS e mês de aniversário foram configurados como obrigatórios, garantindo que o usuário preencha todas as informações essenciais. Esses dados são então armazenados e gerenciados globalmente por meio do useContext, possibilitando o acesso e manipulação dos dados em toda a aplicação, e permitindo a exibição na página de resultados, de forma dinâmica;
 - Para a construção dos elementos da interface e para garantir a responsividade da aplicação, foi utilizada a biblioteca **React Bootstrap**. Ela fornece componentes prontos e altamente configuráveis baseados no Bootstrap, permitindo uma integração eficiente com o React. Além disso, a biblioteca oferece funcionalidades como grid system, botões, formulários e componentes de navegação, que facilitam a criação de layouts flexíveis e responsivos. Com isso, a aplicação se adapta de forma otimizada a diferentes tamanhos de tela, garantindo uma experiência consistente em dispositivos móveis e desktop;
-- Para a construção e validação do formulário, foi utilizado o **Formik** em conjunto com **Yup** . O Formik gerencia o estado dos campos, o processo de submissão e a exibição das mensagens de erro, enquanto o Yup é responsável pela validação dos dados de maneira eficiente e declarativa.
+- Para a construção e validação do formulário, foi utilizado o **Formik** em conjunto com **Yup** . O Formik gerencia o estado dos campos, o processo de submissão e a exibição das mensagens de erro, enquanto o Yup é responsável pela validação dos dados de maneira eficiente e declarativa;
 
 
 ## **Requisitos Não Funcionais**
@@ -82,5 +85,5 @@ Para rodar o projeto localmente, no terminal, execute o seguinte comando:
 
 <code>npm run dev</code>
 
-Isso iniciará o servidor de desenvolvimento na porta [http://localhost:3000](http://localhost:3000) e você poderá acessar o projeto no seu navegador.
+Isso iniciará o servidor de desenvolvimento local na porta [http://localhost:3000](http://localhost:3000) e você poderá acessar o projeto **Smile Co** no seu navegador.
 
