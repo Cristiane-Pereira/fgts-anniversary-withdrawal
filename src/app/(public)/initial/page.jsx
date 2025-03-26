@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -14,41 +13,33 @@ import Container from "@/app/components/Container/Container";
 import Card from "@/app/components/CustomCard/CustomCard";
 import ButtonSubmit from "@/app/components/ButtonSubmit/ButtonSubmit";
 
+// Imports Utils
+import { validatePhoneNumber } from "@/app/helpers/utils";
+
 // Import Context
 import { useAppContext } from "@/app/contexts";
-
-// Import Utils
-import { validatePhoneNumber } from "@/app/helpers/utils";
 
 export default function PageInitial() {
   const [isLoading, setIsLoading] = useState(false);
   const [enableButton, setEnableButton] = useState(false); // Inicia o botão desabilitado
+  const [isPhoneValid, setIsPhoneValid] = useState(false); // Estado para validade do telefone
+
   const { formData, updateFormData } = useAppContext();
   const router = useRouter();
 
+  // Definindo a validação com yup
   const schema = yup.object().shape({
     name: yup
       .string()
       .required("Nome obrigatório"),
-    // phone: yup
-    // .string()
-    // .transform((value) => (!value || /^\+\d{1,3}$/.test(value.trim()) ? null : value))
-    // .test("valid-phone", "Telefone inválido", async (value) => {
-    //   if (!value) return true;
-    //   const numericValue = value.replace(/\s/g, "");
-    //   const valid = await validatePhoneNumber(numericValue); // Valida o telefone com a API
-    //   if (valid === true) return true;
-    //   return valid; // Retorna erro caso a validação falhe
-    // })
-    // .required("Telefone obrigatório"),
     phone: yup
       .string()
-      .required("Telefone obrigatório")
-      .test("valid-phone", "Telefone inválido", (value) => {
-        if (!value) return true; // Se estiver vazio, o required já cuida disso
-        const numericValue = value.replace(/\D/g, ""); // Remove tudo que não for número
-        return /^55\d{11}$|^\d{11}$/.test(numericValue);
-      }),  
+      .test("valid-phone", "Telefone inválido", async (value) => {
+        if (!value) return true; 
+        const isValid = await validatePhoneNumber(value); // Valida o telefone com a API do Twilio
+        setIsPhoneValid(isValid); // Atualiza o estado de validade do telefone
+        return isValid; // Retorna se o telefone é válido ou não
+      }),
     withdrawal_amount: yup
       .string()
       .required("Valor do saldo obrigatório")
@@ -86,6 +77,12 @@ export default function PageInitial() {
             useEffect(() => {
               setEnableButton(isValid); // Habilita ou desabilita o botão conforme o estado de validação
             }, [isValid]);
+
+            useEffect(() => {
+              if (isPhoneValid) {
+                handleChange({ target: { name: 'phone', value: values.phone } });
+              }
+            }, [isPhoneValid, values.phone, handleChange]);
 
             return (
               <Form onSubmit={handleSubmit}>
@@ -214,3 +211,4 @@ export default function PageInitial() {
     </Container>
   );
 }
+
