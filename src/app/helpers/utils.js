@@ -1,24 +1,38 @@
-// valida número de telefone com base na API
-export const validatePhoneNumber = async (phone) => {
-    const apiKey = process.env.TOKEN_VALIDATED_PHONE_API_KEY;
-    
-    // Remover espaços e outros caracteres não numéricos
-    const formattedPhone = phone.replace(/\D/g, ""); // Remove tudo que não seja número
-    const formattedPhoneWithPlus = `+${formattedPhone}`;
+// Função para validar o telefone com a API do Twilio
+export const validatePhoneNumber = async (phoneNumber) => {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
   
-    const url = `https://phonevalidation.abstractapi.com/v1/?api_key=${apiKey}&phone=${formattedPhoneWithPlus}`;
-  
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.valid) {
-        return true; // Número válido
-      } else {
-        return data.error || "Número de telefone inválido."; // Retorna mensagem de erro, se houver
-      }
-    } catch (error) {
-      return "Erro ao validar número de telefone.";
+  // Limpeza do número (remover qualquer caractere não numérico)
+  const cleanedPhone = phoneNumber.replace(/\D/g, "");
+
+  const url = `https://lookups.twilio.com/v1/PhoneNumbers/${cleanedPhone}?CountryCode=BR`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Basic ' + btoa(`${accountSid}:${authToken}`),  // Autenticação básica (base64)
+      },
+    });
+
+    if (!response.ok) {
+      // Se a resposta não for bem-sucedida, retorna false
+      throw new Error('Falha ao validar o telefone.');
     }
+
+    const data = await response.json();
+    
+    if (data && data.phone_number) {
+      return true; // Retorna true se o número for válido
+    }
+
+    return false; // Caso contrário, retorna false
+
+  } catch (error) {
+    console.error('Erro ao validar o telefone:', error);
+    return false;
+  }
 };
 
 // Calcula valor do FGTS
