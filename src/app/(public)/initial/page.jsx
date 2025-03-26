@@ -44,7 +44,7 @@ export default function PageInitial() {
       .string()
       .required("Valor do saldo obrigatório")
       .matches(
-        /^(?!-)(?:\d{1,3}(?:[\.,]\d{3})*|\d+)(?:[\.,]\d+)?$/, 
+        /^(?!-)(\d+|\d{1,3}(?:[.,]\d{3})*)(?:[.,]\d+)?$/, 
         "Não pode ser valor negativo"
       )
       .test('positive-number', 'O valor não pode ser negativo', value => parseFloat(value) >= 0),
@@ -140,7 +140,7 @@ export default function PageInitial() {
                     <Form.Label htmlFor="withdrawal_amount" className="input-label mb-1">Qual seu saldo?</Form.Label>
 
                     <Form.Control
-                      type="number"
+                      type="text"
                       name="withdrawal_amount"
                       placeholder="ex: R$ 5.000,00"
                       className="input-text rounded-2"
