@@ -38,8 +38,9 @@ body {
    📝 Typography
 ========================== */
 h1 {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.8rem;
+  font-style: italic;
 }
 
 h3 {

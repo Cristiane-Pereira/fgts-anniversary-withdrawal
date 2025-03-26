@@ -42,19 +42,19 @@ export const calculateWithdrawalAmount = (amount) => {
   let calculatedAmount = 0;
 
   if (amount <= 500) {
-    calculatedAmount = amount * 0.5;
+    calculatedAmount = amount * 0.5; // Valor x 50%;
   } else if (amount <= 1000) {
-    calculatedAmount = amount * 0.4 + 50;
+    calculatedAmount = amount * 0.4 + 50; // Valor x 40% + 50;
   } else if (amount <= 5000) {
-    calculatedAmount = amount * 0.3 + 150;
+    calculatedAmount = amount * 0.3 + 150; // Valor x 30% + 150;
   } else if (amount <= 10000) {
-    calculatedAmount = amount * 0.2 + 650;
+    calculatedAmount = amount * 0.2 + 650; // Valor x 20% + 650;
   } else if (amount <= 15000) {
-    calculatedAmount = amount * 0.15 + 1150;
+    calculatedAmount = amount * 0.15 + 1150; // valor x 15% + 1150
   } else if (amount <= 20000) {
-    calculatedAmount = amount * 0.1 + 1900;
+    calculatedAmount = amount * 0.1 + 1900; // valor x 10% + 1900
   } else {
-    calculatedAmount = amount * 0.05 + 2900;
+    calculatedAmount = amount * 0.05 + 2900; // valor x 5% + 2900
   }
 
   return calculatedAmount.toFixed(2);
