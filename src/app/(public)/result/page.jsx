@@ -33,7 +33,7 @@ const PageResult = () => {
   }).format(calculatedWithdrawal);
 
   return (
-    <Container title={`Olá, ${formData.name}`}>
+    <Container title={`Olá, ${formData.name ? formData.name : "Name"}`}>
       <Card>
         <main>
           <section>

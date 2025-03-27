@@ -66,10 +66,10 @@ const Container = ({ title, children }) => {
 
       {/* Renderização para telas pequenas */}
       <MediaQuery maxDeviceWidth={767}>
-        <Col xs={12} className="vh-100 d-flex align-items-center section-container px-5">
-          <div className="position-relative d-flex flex-column align-items-center">
+        <Col xs={12} className="vh-100 d-flex align-items-center justify-content-center section-container px-5">
+          <div className="position-relative d-flex flex-column align-items-center w-100">
             <div className="w-100 text-center mb-4">
-              <div className="d-flex align-items-center mb-2">
+              <div className="d-flex align-items-center mb-2 justify-content-start">
                 <Image src={Icon} alt="Icon Smile Co" />
                 <span className="text-logo mx-2">SMILE Co.</span>
               </div>

@@ -27,6 +27,7 @@ O valor do saque-aniversário é calculado conforme a faixa de saldo do FGTS do 
 - NextJS;
 - ReactJS;
 - React Bootstrap;
+- React MediaQuery
 - JavaScript;
 
 
@@ -44,7 +45,7 @@ O valor do saque-aniversário é calculado conforme a faixa de saldo do FGTS do 
 - Página Inicial com formulário para o usuário preencher os dados necessários para o cálculo;
 - Página de Resultado com cálculo do saque-aniversário que o usuário vai poder sacar;
 - Foi implementada uma validação nos campos do formulário, com destaque para o campo de telefone, utilizando a validação API da [Twilio](https://www.twilio.com/docs) para garantir que o número informado seja válido. Além disso, os campos de nome, saldo do FGTS e mês de aniversário foram configurados como obrigatórios, garantindo que o usuário preencha todas as informações essenciais. Esses dados são então armazenados e gerenciados globalmente por meio do useContext, possibilitando o acesso e manipulação dos dados em toda a aplicação, e permitindo a exibição na página de resultados, de forma dinâmica;
-- Para a construção dos elementos da interface e para garantir a responsividade da aplicação, foi utilizada a biblioteca **React Bootstrap**. Ela fornece componentes prontos e altamente configuráveis baseados no Bootstrap, permitindo uma integração eficiente com o React. Além disso, a biblioteca oferece funcionalidades como grid system, botões, formulários e componentes de navegação, que facilitam a criação de layouts flexíveis e responsivos. Com isso, a aplicação se adapta de forma otimizada a diferentes tamanhos de tela, garantindo uma experiência consistente em dispositivos móveis e desktop;
+- Para a construção da interface e garantir a responsividade da aplicação, foi adotada a biblioteca **React Bootstrap**. Ela oferece uma coleção de componentes prontos e altamente personalizáveis, baseados no framework Bootstrap, permitindo uma integração ágil e eficiente com o React. A biblioteca inclui funcionalidades como grid system, botões, formulários entre outros, que simplificam a criação de layouts flexíveis e adaptáveis. Combinada ao uso de **Media Queries**, ela possibilita uma adaptação otimizada da aplicação a diferentes tamanhos de tela, proporcionando uma experiência de usuário consistente e fluida em dispositivos móveis, tablets e desktops.
 - Para a construção e validação do formulário, foi utilizado o **Formik** em conjunto com **Yup** . O Formik gerencia o estado dos campos, o processo de submissão e a exibição das mensagens de erro, enquanto o Yup é responsável pela validação dos dados de maneira eficiente e declarativa;
 
 
