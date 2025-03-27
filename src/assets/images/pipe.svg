@@ -1,0 +1,11 @@
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  version="1.0" 
+  fill="#117a8b" 
+  viewBox="0 0 512 512" 
+  preserveAspectRatio="none"
+  className="h-full w-auto">
+  <g transform="translate(0,512) scale(0.1,-0.1)" stroke="none">
+    <path d="M2346 3704 c-3 -9 -6 -525 -6 -1148 0 -867 3 -1135 12 -1144 17 -17 399 -17 416 0 17 17 17 2279 0 2296 -9 9 -70 12 -214 12 -175 0 -203 -2 -208 -16z"/>
+  </g>
+</svg>

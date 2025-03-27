@@ -33,29 +33,25 @@ const PageResult = () => {
   }).format(calculatedWithdrawal);
 
   return (
-    <Container title={`Olá, ${formData.name}`}>
+    <Container title={`Olá, ${formData.name ? formData.name : "Name"}!`}>
       <Card>
-        <main>
-          <section>
-            <Row>
-              <Col lg="6" className="d-flex flex-column justify-content-center align-items-start">
-                <h3 className="title-secondary">Você pode receber até</h3>
-                <div className="d-flex align-items-center">
-                  <small>R$</small>
-                  <span className="value-sake title-secondary mx-2">{formattedResult}</span>
-                </div>
-              </Col>
+         <Row className="py-4">
+            <Col lg="6" className="d-flex flex-column justify-content-center align-items-start">
+              <h3 className="title-secondary">Você pode receber até</h3>
+              <div className="d-flex align-items-center">
+                <small>R$</small>
+                <p className="value-sake title-secondary m-0 mx-2">{formattedResult}</p>
+              </div>
+            </Col>
 
-              <Col lg="6">
-                <span className="subtitle">
-                  <strong className="title-secondary">Esta simulação traz valores aproximados.</strong>
-                  Para calcular o valor exato, <strong className="title-secondary">entre em
-                  contato com a Smile Co para consultar seu saldo FGTS.</strong>
-                </span>
-              </Col>
-            </Row>
-          </section>
-        </main>
+            <Col lg="6">
+              <p className="subtitle m-0">
+                <strong className="title-secondary">Esta simulação traz valores aproximados.</strong>
+                Para calcular o valor exato, <strong className="title-secondary">entre em
+                contato com a Smile Co para consultar seu saldo FGTS.</strong>
+              </p>
+            </Col>
+          </Row>
       </Card>
     </Container>
   );

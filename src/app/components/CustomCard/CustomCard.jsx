@@ -5,7 +5,7 @@ const CustomCard = ({
   children,
 }) => {
   return (
-    <Card className="w-50 rounded-4 px-lg-4" style={{minWidth: '300px'}}>
+    <Card className="w-75 rounded-4 px-lg-5 py-lg-3" style={{minWidth: '300px'}}>
       <CardBody>
         {children}
       </CardBody>

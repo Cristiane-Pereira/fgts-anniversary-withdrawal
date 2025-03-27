@@ -1,7 +1,7 @@
 // Função para validar o telefone com a API do Twilio
 export const validatePhoneNumber = async (phoneNumber) => {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const accountSid = "";
+  const authToken = "";
   
   // Limpeza do número (remover qualquer caractere não numérico)
   const cleanedPhone = phoneNumber.replace(/\D/g, "");

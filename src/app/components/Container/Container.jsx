@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import MediaQuery from "react-responsive";
 import { Row, Col } from "react-bootstrap";
 import Image from "next/image";
+
+// Imports Images
 import Hero from "../../../assets/images/hero.jpg";
 import Icon from "../../../assets/images/logoIcon.svg";
+import Dollar from "../../../assets/images/dollar.svg";
+import Pipe from "../../../assets/images/pipe.svg";
 
 const Container = ({ title, children }) => {
   const [isClient, setIsClient] = useState(false);
@@ -41,7 +45,7 @@ const Container = ({ title, children }) => {
         </Row>
 
         <div className="position-absolute d-flex flex-column align-items-center">
-          <div className="w-50 px-lg-4 mb-4">
+          <div className="w-75 px-lg-4 mb-4">
             <div className="d-flex align-items-center mb-2">
               <Image src={Icon} alt="Icon Smile Co" />
               <span className="text-logo mx-2">SMILE Co.</span>
@@ -50,12 +54,18 @@ const Container = ({ title, children }) => {
               <Col lg="7" className="mb-2">
                 <h1 className="title-primary">{title}</h1>
               </Col>
-              <Col lg="5">
-                <p className="text-uppercase mb-0">Saque Aniversário</p>
-                <span>
-                  <strong>Insira seus dados </strong>e verifique o quanto você pode
-                  receber!
-                </span>
+              <Col lg="4">
+                <p className="text-uppercase mb-0">
+                  <Image src={Dollar} alt="Icon Dollar" className="me-2"/>
+                  Saque Aniversário
+                </p>
+                <div className="icon-pipe d-flex justify-content-start align-items-center">
+                  <Image src={Pipe} alt="Icon Pipe" className="me-1" style={{height: 60, width: 25}} />
+                  <span>
+                    <strong>Insira seus dados </strong>e verifique o quanto você pode
+                    receber!
+                  </span>
+                </div>
               </Col>
             </Row>
           </div>
@@ -66,10 +76,10 @@ const Container = ({ title, children }) => {
 
       {/* Renderização para telas pequenas */}
       <MediaQuery maxDeviceWidth={767}>
-        <Col xs={12} className="vh-100 d-flex align-items-center section-container px-5">
-          <div className="position-relative d-flex flex-column align-items-center">
+        <Col xs={12} className="vh-100 d-flex align-items-center justify-content-center section-container px-5">
+          <div className="position-relative d-flex flex-column align-items-center w-100">
             <div className="w-100 text-center mb-4">
-              <div className="d-flex align-items-center mb-2">
+              <div className="d-flex align-items-center mb-2 justify-content-start">
                 <Image src={Icon} alt="Icon Smile Co" />
                 <span className="text-logo mx-2">SMILE Co.</span>
               </div>
@@ -79,11 +89,17 @@ const Container = ({ title, children }) => {
                   <h1 className="title-primary">{title}</h1>
                 </Col>
                 <Col lg="5">
-                  <p className="text-uppercase mb-0">Saque Aniversário</p>
-                  <span>
-                    <strong>Insira seus dados </strong>e verifique o quanto você pode
-                    receber!
-                  </span>
+                  <p className="text-uppercase mb-0">
+                    <Image src={Dollar} alt="Icon Dollar" className="me-2"/>
+                    Saque Aniversário
+                  </p>
+                  <div className="icon-pipe d-flex justify-content-start align-items-center">
+                    <Image src={Pipe} alt="Icon Pipe" className="me-1" style={{height: 56, width: 25}} />
+                    <span>
+                      <strong>Insira seus dados </strong>e verifique o quanto você pode
+                      receber!
+                    </span>
+                  </div>
                 </Col>
               </Row>
             </div>
