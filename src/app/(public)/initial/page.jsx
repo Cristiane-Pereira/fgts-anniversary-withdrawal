@@ -39,7 +39,8 @@ export default function PageInitial() {
         const isValid = await validatePhoneNumber(value); // Valida o telefone com a API do Twilio
         setIsPhoneValid(isValid); // Atualiza o estado de validade do telefone
         return isValid; // Retorna se o telefone é válido ou não
-      }),
+      })
+      .required("Telefone obrigatório"),
     withdrawal_amount: yup
       .string()
       .required("Valor do saldo obrigatório")
@@ -136,7 +137,7 @@ export default function PageInitial() {
 
                 <Row>
                   {/* Campo Saldo */}
-                  <Form.Group as={Col} lg="5" className="mb-2">
+                  <Form.Group as={Col} lg="6" className="mb-2">
                     <Form.Label htmlFor="withdrawal_amount" className="input-label mb-1">Qual seu saldo?</Form.Label>
 
                     <Form.Control
@@ -159,7 +160,7 @@ export default function PageInitial() {
                   </Form.Group>
 
                   {/* Campo Mês de Nascimento */} 
-                  <Form.Group as={Col} lg="7" className="mb-2">
+                  <Form.Group as={Col} lg="6" className="mb-2">
                     <Form.Label htmlFor="birth_month" className="input-label mb-1">Qual seu mês de aniversário?</Form.Label>
 
                     <Form.Select
