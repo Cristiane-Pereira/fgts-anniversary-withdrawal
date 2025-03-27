@@ -5,9 +5,9 @@ O projeto **Smile Co** tem como objetivo proporcionar uma experiência simples e
 ## **Funcionalidades**
 A aplicação possui as seguintes funcionalidades principais:
 
-**Página Inicial:** Um formulário onde o usuário pode inserir seu nome, telefone, saldo do FGTS e mês de aniversário.
+**Página Inicial:** [http://localhost:3000/initial](http://localhost:3000/initial) - Um formulário onde o usuário pode inserir seu nome, telefone, saldo do FGTS e mês de aniversário.
 
-**Página de Resultados:** Após preencher o formulário, o usuário é redirecionado para uma página de resultados com o valor do saque-aniversário calculado, com base nas regras específicas para o saque.
+**Página de Resultados:** [http://localhost:3000/result](http://localhost:3000/result) - Após preencher o formulário, o usuário é redirecionado para uma página de resultados com o valor do saque-aniversário calculado, com base nas regras específicas para o saque.
 
 
 ## **Regras de Cálculo (Regra de Negócio)**
